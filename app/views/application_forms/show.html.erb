@@ -1,0 +1,10 @@
+<%- model_class = ApplicationForm -%>
+<div class="page-header">
+  <h1>Successful Submission</h1>
+</div>
+You application has been submitted and your tracking number is <b><%= @application_form.tracking_id%></b><br/>
+Please keep this save for future reference or track your application
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              application_forms_path, :class => 'btn'  %>
+</div>

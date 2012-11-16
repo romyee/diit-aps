@@ -1,0 +1,13 @@
+<fieldset style="padding: 10px 0px; /*border: 1px solid gray*/" >
+<h3>Form Fields <% @item_sr %></h3>
+  <div class="control-group">
+	<%= f.input :label %>
+	<%= f.input :description, :input_html => {:size => "50x3"} %>
+	<%= f.input :answer_type, :as => :select, :collection => {"Text Field" => "text", 'Text Area' => "textarea", "Radio Button" => "radio", "Checkbox" => "checkbox", "Select Dropdown" => "select" }, :default => "" %>
+	<%= f.input :mandetory %>
+	<%= f.input :answer_opitons, :input_html => {:size => "50x3"} %>
+  <div class="controls">
+	<%= f.hidden_field :_destroy %>
+    <%= link_to "Remove This Field", "#", class: "remove_fields btn btn-mini btn-danger" %>
+  </div>
+</fieldset>

@@ -1,0 +1,40 @@
+<%- model_class = ApplicationFormField -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:application_form_id) %></th>
+      <th><%= model_class.human_attribute_name(:form_field_id) %></th>
+      <th><%= model_class.human_attribute_name(:field_answer) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @application_form_fields.each do |application_form_field| %>
+      <tr>
+        <td><%= link_to application_form_field.id, application_form_field_path(application_form_field) %></td>
+        <td><%= application_form_field.application_form_id %></td>
+        <td><%= application_form_field.form_field_id %></td>
+        <td><%= application_form_field.field_answer %></td>
+        <td><%=l application_form_field.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_application_form_field_path(application_form_field), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      application_form_field_path(application_form_field),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_application_form_field_path,
+            :class => 'btn btn-primary' %>

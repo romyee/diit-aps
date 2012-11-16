@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  application_form: 
+  form_field: 
+  field_answer: MyText
+
+two:
+  application_form: 
+  form_field: 
+  field_answer: MyText

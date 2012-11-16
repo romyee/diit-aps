@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  application_form: 
+  refferer_id: 1
+  reffer_to_id: 1
+  purpose: MyString
+  message: MyText
+  status: 1
+
+two:
+  application_form: 
+  refferer_id: 1
+  reffer_to_id: 1
+  purpose: MyString
+  message: MyText
+  status: 1

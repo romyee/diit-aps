@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  form: 
+  tracking_id: MyString
+  comment: 
+  status: 1
+
+two:
+  user: 
+  form: 
+  tracking_id: MyString
+  comment: 
+  status: 1

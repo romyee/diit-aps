@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  label: MyString
+  description: MyText
+  answer_type: MyString
+  mandetory: false
+  answer_opitons: MyText
+
+two:
+  label: MyString
+  description: MyText
+  answer_type: MyString
+  mandetory: false
+  answer_opitons: MyText

@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Tracking: <%= @application.form.title %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Details</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% sr = 0 %>
+  <% @histories.each do |history| %>
+      <tr>
+        <td>Application <%= get_application_status_name(history.status) %> by <%= User.find(history.refferer_id).name %> 
+		<% if history.status.to_i == 1 || history.status.to_i == 5 %>
+			to <%= history.reffer_to.name %>
+		<% end %>
+		<% if history.status.to_i != 10 %>
+			for <%= history.purpose %></td>
+		<% end %>
+        <td><%= history.created_at.strftime("%d %b at %H:%M:%S") %></td>
+      </tr>
+  <% end %>
+	<tr>
+      <td>Application has been received and processed by HR department</td>
+      <td><%= @application.created_at.strftime("%d %b at %H:%M:%S")%></td>
+    </tr>
+  </tbody>
+</table>

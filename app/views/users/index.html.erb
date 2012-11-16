@@ -1,0 +1,46 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sr. </th>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+	<% sr = 0;%>
+    <% @users.each do |user| %>
+	<% sr += 1 %>
+      <tr>
+        <td><%= sr %></td>
+        <td><%= user.name %></td>
+        <td><%= user.official_id %></td>
+        <td><%= user.present_addresss %></td>
+        <td><%= user.contact_number %></td>
+        <td><%= get_user_level_name(user.role) %></td>
+        <td><%= user.status %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_user_path(user), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      user_path(user),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_user_path,
+            :class => 'btn btn-primary' %>

@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1>Available Application Form</h1>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Sr.</th>
+    <th>Form Title</th>
+    <th>Description</th>
+    <th>Last Date</th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% sr = 0 %>
+  <% @forms.each do |form| %>
+      <tr>
+        <td><%= sr +=1 %></td>
+        <td><%= form.title %></td>
+        <td><%= form.description %></td>
+        <td><%= form.last_date.strftime("%d %b %Y")%></td>
+        <td>
+          <%= link_to "Apply", {:controller => "application_forms", :action => "apply", :id => form.id}, :class => "btn btn-mini" %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

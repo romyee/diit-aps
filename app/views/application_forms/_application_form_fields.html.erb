@@ -1,0 +1,38 @@
+<div class="control-group">
+<%= f.input :form_field_id, :as => :hidden, :input_html => { :value => field.id } %>
+<% rf = field.answer_type %>
+  <%= f.label :field_answer, :label =>field.label, :class => 'control-label' %>
+  <div class="controls">
+    <% if rf == "text" %>
+        <%= f.text_field :field_answer, :class => 'text_field' %>
+    <% elsif rf == "textarea" %>
+        <%= f.text_area :field_answer, :label => field.label, :size => '60x5', :class => 'text_area' %>
+    <% elsif rf == "radio" %>
+        <% options = field.answer_opitons %>
+        <% unless options.blank? %>
+            <% option = options.split("|").collect{|x| x.strip} ; %>
+            <% option.each do |opt| %>
+                <%= f.radio_button :field_answer, opt %> <%= opt %><br />
+            <% end %>
+        <% end %>
+
+    <% elsif rf == "checkbox" %>
+        <% options = field.answer_opitons %>
+        <% unless options.blank? %>
+            <% option = options.split("|").collect{|x| x} ; %>
+            <% option.each do |opt| %>
+                <%= f.check_box :field_answer %> <%= opt %><br />
+            <% end %>
+        <% end %>
+    <% elsif rf == "select" %>
+        <% options = field.answer_opitons %>
+        <% unless options.blank? %>
+            <% option = options.split("|").collect{|x| x.strip} ; %>
+            <%= f.select :field_answer, option %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+

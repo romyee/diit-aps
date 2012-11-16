@@ -1,0 +1,90 @@
+<div class="page-header">
+  <h1>Application Details</h1>
+</div>
+<style>
+.table-hover th, .table-hover td{
+border-top: none;	
+}
+</style>
+<table class="table table-hover">
+	<tr>
+		<td>Applicant Type</td>
+		<td style="width:65%"><b><%= @process.application_form.form.title %></b></td>
+	</tr>
+	<tr>
+		<td>Applicant Name</td>
+		<td><b><%= @process.application_form.user.name %></b></td>
+	</tr>
+	<tr>
+		<td>Applicant ID</td>
+		<td><b><%= @process.application_form.user.official_id %></b></td>
+	</tr>
+	<tr>
+		<td>Applicant Address</td>
+		<td><b><%= @process.application_form.user.present_addresss %></b></td>
+	</tr>
+	<tr>
+		<td>Applicant Contact</td>
+		<td><b><%= @process.application_form.user.contact_number %></b></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td><b><%= @process.application_form.user.email %></b></td>
+	</tr>
+	<% @process.application_form.application_form_fields.each do |field| %>
+	<tr>
+		<td><%= field.form_field.label %></td>
+		<td><b><%= field.field_answer %></b></td>
+	</tr>
+	<% end %>
+	<tr><td></td><td></td></tr>
+	<tr><td></td><td></td></tr>
+	<tr>
+		<td><b>Forwarded By</b></td>
+		<td><b><%= User.find(@process.refferer_id).name %></b></td>
+	</tr>
+	<tr>
+		<td><b>Purpose</b></td>
+		<td><b><%= @process.purpose %></b></td>
+	</tr>
+	<tr>
+		<td><b>Message</b></td>
+		<td><%= @process.message %></td>
+	</tr>
+</table>
+<div class="form-actions">
+	<%= link_to "Forward", {:controller => "application_processes", :action => "forward", :id => @process.application_form.id, :pid => @process.id}, :class => "btn" %>
+	<%= link_to "Approve", {:controller => "application_processes", :action => "approve", :id => @process.application_form.id, :pid => @process.id}, :class => "btn" %>
+	<%= link_to "Reject", {:controller => "application_processes", :action => "reject", :id => @process.application_form.id, :pid => @process.id}, :class => "btn" %>
+</div><br />
+<br />
+<h3>Processasig History</h3><br />
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Details</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% sr = 0 %>
+  <% ApplicationForm.find(@process.application_form.id).application_processes.order("created_at DESC").each do |history| %>
+      <tr>
+        <td>Application <%= get_application_status_name(history.status) %> by <%= User.find(history.refferer_id).name %> 
+		<% if history.status.to_i == 1 %>
+			to <%= history.reffer_to.name %>
+		<% end %>
+		<% if history.status.to_i != 10 %>
+			for <%= history.purpose %></td>
+		<% end %>
+        <td><%= history.created_at.strftime("%d %b at %H:%M:%S") %></td>
+      </tr>
+  <% end %>
+	<tr>
+      <td>Application has been received and processed by HR department</td>
+      <td><%= @process.application_form.created_at.strftime("%d %b at %H:%M:%S")%></td>
+    </tr>
+  </tbody>
+</table>
+

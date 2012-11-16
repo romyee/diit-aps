@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>ToDo List <span style ="font-size:normal; font-size: 11px; color:red">Action Required(<%= @processes.size %>)</span></h1>
+</div>
+<% if @processes.size > 0 %>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Forwarded By</th>
+    <th>Purpose</th>
+	<th>Application Type</th>
+    <th>Applicant</th>
+    <th>ID</th>
+	<th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% sr = 0 %>
+  <% @processes.each do |process| %>
+      <tr>
+        <td><%= User.find(process.refferer_id).name  %></td>
+        <td><%= process.purpose %></td>
+		<td><%= process.application_form.form.title %></td>
+        <td><%= process.application_form.user.name %></td>
+        <td><%= process.application_form.user.official_id %></td>
+		<td><%= link_to "Details", {:controller => "staff", :action => "application_details", :id => process.id}, :class => "btn btn-mini" %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+<%= not_found_message %>
+<% end %>

@@ -1,0 +1,46 @@
+<%- model_class = FormField -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:form_id) %></th>
+      <th><%= model_class.human_attribute_name(:label) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:answer_type) %></th>
+      <th><%= model_class.human_attribute_name(:mandetory) %></th>
+      <th><%= model_class.human_attribute_name(:answer_opitons) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @form_fields.each do |form_field| %>
+      <tr>
+        <td><%= link_to form_field.id, form_field_path(form_field) %></td>
+        <td><%= form_field.form_id %></td>
+        <td><%= form_field.label %></td>
+        <td><%= form_field.description %></td>
+        <td><%= form_field.answer_type %></td>
+        <td><%= form_field.mandetory %></td>
+        <td><%= form_field.answer_opitons %></td>
+        <td><%=l form_field.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_form_field_path(form_field), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      form_field_path(form_field),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_form_field_path,
+            :class => 'btn btn-primary' %>

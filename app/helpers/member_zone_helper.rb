@@ -1,0 +1,2 @@
+module MemberZoneHelper
+end

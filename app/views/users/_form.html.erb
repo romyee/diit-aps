@@ -1,0 +1,16 @@
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+	<%= f.error_notification %>
+	<%= f.input :role, :label => "User Type", :as => :select, :collection => {"Student" => 1, "Faculty Staff" => 5, "Admin Staff" => 10} %>
+	<%= f.input :first_name %>
+	<%= f.input :last_name %>
+	<%= f.input :email %>
+	<%= f.input :official_id, :label => "DIIT ID" %>
+	<%= f.input :permanent_address, :input_html => {:size => "60x5"} %>
+	<%= f.input :present_addresss, :input_html => {:size => "60x5"} %>
+	<%= f.input :contact_number %>
+	<%= f.input :password %>
+	<div class="form-actions">
+		<%= f.button :submit %>	
+		<%= link_to "Cancel", {:action => "index", :controller => "users"}, :class => "btn"%>
+	</div>
+<% end %>

@@ -49,7 +49,19 @@ Aps::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "diit.info",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: "apsystem.diit@gmail.com",
+    password: "apsystem01716985577",
+    openssl_verify_mode: "none"
+  }
 
   # Enable threaded mode
   # config.threadsafe!
